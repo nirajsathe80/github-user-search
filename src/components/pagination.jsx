@@ -1,7 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useMemo } from "react";
 
-const Pagination = function ({ start, end, onPageClick, selectedPage }) {
+const Pagination = function ({
+  start,
+  end,
+  onPageClick,
+  selectedPage,
+  className = "",
+}) {
   const createArray = function () {
     const newArray = [];
     for (let i = start; i <= end; i++) {
@@ -13,7 +19,10 @@ const Pagination = function ({ start, end, onPageClick, selectedPage }) {
   const pageArray = useMemo(createArray, [selectedPage, end]);
 
   return (
-    <nav aria-label="Page navigation example" className="flex justify-center">
+    <nav
+      aria-label="Page navigation example"
+      className={`flex justify-center ${className}`}
+    >
       <ul className="inline-flex -space-x-px text-base h-10">
         {pageArray.map((page) => {
           return (
