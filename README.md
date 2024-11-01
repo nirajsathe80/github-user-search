@@ -1,8 +1,26 @@
-# React + Vite
+Description:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The web app is about dev finder. Initially Few users are shown with pagination. The pagination allows user to fetch next users.
 
-Currently, two official plugins are available:
+Command to run on development mode 
+    -> npm run dev
+ localhost url:
+    -> localhost:5173
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+command to run the production build:
+    -> npm run build
+
+About Code Structure
+
+1. context for providing user data
+    ---> src/context/UserContext
+
+2. Components
+    ---> src/components
+
+Library used
+
+1. Axios --- to fetch api's
+
+Styling:
+    - Tailwind css used for styling the components
