@@ -18,10 +18,10 @@ const Pagination = function ({ start, end, onPageClick, selectedPage }) {
         {pageArray.map((page) => {
           return (
             <li
-              className={`flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300  cursor-pointer ${
+              className={`flex items-center justify-center px-4 h-10 leading-tight   border-gray-300  cursor-pointer ${
                 selectedPage === page
-                  ? "text-blue-400 bg-gray-400 font-semibold"
-                  : "hover:text-gray-700 hover:bg-gray-100"
+                  ? "text-blue-400 bg-gray-200 font-bold text-lg"
+                  : "hover:text-gray-700 hover:bg-gray-100 text-gray-500 bg-white border text-sm"
               }`}
               key={page}
               onClick={() => onPageClick(page)}
