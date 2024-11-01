@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import UserContext from "../context/UserContext";
+import Repositories from "./repositories";
 
 const UserProfile = () => {
-  const { users, error, pagination } = useContext(UserContext);
+  const { users, error, pagination, repositories } = useContext(UserContext);
   const { start, end } = pagination;
 
   if (error)
@@ -128,6 +129,11 @@ const UserProfile = () => {
                     );
                   })}
                 </div>
+                {repositories && repositories.length > 0 ? (
+                  <Repositories />
+                ) : (
+                  <></>
+                )}
               </div>
             </div>
           );

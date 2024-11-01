@@ -15,13 +15,19 @@ const App = () => {
     <div className="w-screen min-h-screen bg-[#d3d3ff] font-serif pb-28 px-4">
       <p className="text-2xl text-center py-6">Github User Search</p>
       <Search />
-      {loading ? <Loader /> : <UserProfile />}
-      <Pagination
-        end={totalPages}
-        start={1}
-        onPageClick={handlePaginationPageClick}
-        selectedPage={selectedPage}
-      />
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <UserProfile />
+          <Pagination
+            end={totalPages}
+            start={1}
+            onPageClick={handlePaginationPageClick}
+            selectedPage={selectedPage}
+          />
+        </>
+      )}
     </div>
   );
 };

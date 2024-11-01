@@ -13,6 +13,7 @@ export const UserProvider = ({ children }) => {
     end: 4,
     selectedPage: 1,
   });
+  const [repositories, setRepositories] = useState([]);
 
   const fetchUser = async (username) => {
     setLoading(true);
@@ -21,7 +22,11 @@ export const UserProvider = ({ children }) => {
       const userResponse = await axios.get(
         `https://api.github.com/users/${username}`
       );
+      const reposResponse = await axios.get(
+        `https://api.github.com/users/${username}/repos`
+      );
       setUsers([userResponse.data]);
+      setRepositories(reposResponse.data);
       setPagination((prev) => ({
         ...prev,
         start: 0,
@@ -75,6 +80,7 @@ export const UserProvider = ({ children }) => {
         loading,
         pagination,
         handlePaginationPageClick,
+        repositories,
       }}
     >
       {children}
