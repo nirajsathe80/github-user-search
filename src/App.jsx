@@ -6,15 +6,25 @@ import Loader from "./components/loader";
 import Pagination from "./components/pagination";
 
 const App = () => {
-  const { loading, users, handlePaginationPageClick, pagination } =
-    useContext(UserContext);
-  const { selectedPage } = pagination;
+  const {
+    loading,
+    users,
+    handlePaginationPageClick,
+    pagination,
+    handleSearch,
+  } = useContext(UserContext);
+
+  const { currentPage } = pagination;
   const totalPages = Math.floor(users?.length / 4);
 
   return (
     <div className="w-screen min-h-screen bg-[#d3d3ff] font-serif pb-28 px-4">
       <p className="text-2xl text-center py-6">Github User Search</p>
-      <Search />
+      <Search
+        onSearchClick={handleSearch}
+        placeholder={"Enter Github UserName"}
+        buttonText={"Search"}
+      />
       {loading ? (
         <Loader />
       ) : (
@@ -24,7 +34,7 @@ const App = () => {
             end={totalPages}
             start={1}
             onPageClick={handlePaginationPageClick}
-            selectedPage={selectedPage}
+            selectedPage={currentPage}
           />
         </>
       )}
