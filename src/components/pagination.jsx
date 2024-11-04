@@ -8,15 +8,14 @@ const Pagination = function ({
   selectedPage,
   className = "",
 }) {
-  const createArray = function () {
+  const paginationArray = function () {
     const newArray = [];
     for (let i = start; i <= end; i++) {
       newArray.push(i);
     }
     return newArray;
   };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const pageArray = useMemo(createArray, [selectedPage, end]);
+  const pageArray = useMemo(paginationArray, [selectedPage, end]);
 
   return (
     <nav
