@@ -1,13 +1,8 @@
-import { useState, useContext } from "react";
-import UserContext from "../context/UserContext";
+import { useState } from "react";
 
-const Search = () => {
+/* eslint-disable react/prop-types */
+const Search = ({ onSearchClick, placeholder, buttonText }) => {
   const [username, setUsername] = useState("");
-  const { fetchUser } = useContext(UserContext);
-
-  const handleSearch = () => {
-    if (username.trim()) fetchUser(username);
-  };
 
   return (
     <div className="max-w-96 mx-auto">
@@ -15,7 +10,7 @@ const Search = () => {
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only"
       >
-        Search
+        {buttonText}
       </label>
       <div className="relative">
         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -39,16 +34,16 @@ const Search = () => {
           type="search"
           id="default-search"
           className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 outline-none"
-          placeholder="Enter Github UserName"
+          placeholder={placeholder}
           onChange={(e) => setUsername(e.target.value)}
           value={username}
         />
         <button
           type="submit"
           className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800  focus:outline-none  font-medium rounded-lg text-sm px-4 py-2"
-          onClick={handleSearch}
+          onClick={() => onSearchClick(username)}
         >
-          Search
+          {buttonText}
         </button>
       </div>
     </div>
