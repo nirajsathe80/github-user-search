@@ -11,7 +11,7 @@ export const UserProvider = ({ children }) => {
   const [pagination, setPagination] = useState({
     start: 0,
     end: 4,
-    selectedPage: 1,
+    currentPage: 1,
   });
   const [repositories, setRepositories] = useState([]);
 
@@ -22,16 +22,18 @@ export const UserProvider = ({ children }) => {
       const userResponse = await axios.get(
         `https://api.github.com/users/${username}`
       );
+
       const reposResponse = await axios.get(
         `https://api.github.com/users/${username}/repos`
       );
+
       setUsers([userResponse.data]);
       setRepositories(reposResponse.data);
       setPagination((prev) => ({
         ...prev,
         start: 0,
         end: 6,
-        selectedPage: 1,
+        currentPage: 1,
       }));
     } catch (err) {
       setError("User not found");
@@ -49,8 +51,12 @@ export const UserProvider = ({ children }) => {
       ...prev,
       start,
       end,
-      selectedPage: page,
+      currentPage: page,
     }));
+  };
+
+  const handleSearch = (username) => {
+    if (username.trim()) fetchUser(username);
   };
 
   const fetchAllUsers = async () => {
@@ -81,6 +87,7 @@ export const UserProvider = ({ children }) => {
         pagination,
         handlePaginationPageClick,
         repositories,
+        handleSearch,
       }}
     >
       {children}
