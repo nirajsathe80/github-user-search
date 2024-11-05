@@ -24,6 +24,7 @@ const App = () => {
         onSearchClick={handleSearch}
         placeholder={"Enter Github UserName"}
         buttonText={"Search"}
+        onEnterKey={handleSearch}
       />
       {loading ? (
         <Loader />

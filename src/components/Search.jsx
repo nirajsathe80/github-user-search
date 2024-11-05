@@ -1,8 +1,12 @@
 import { useState } from "react";
 
 /* eslint-disable react/prop-types */
-const Search = ({ onSearchClick, placeholder, buttonText }) => {
+const Search = ({ onSearchClick, placeholder, buttonText, onEnterKey }) => {
   const [username, setUsername] = useState("");
+
+  const handleInputChange = (event) => {
+    setUsername(event.target.value);
+  };
 
   return (
     <div className="max-w-96 mx-auto">
@@ -35,8 +39,13 @@ const Search = ({ onSearchClick, placeholder, buttonText }) => {
           id="default-search"
           className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 outline-none"
           placeholder={placeholder}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={handleInputChange}
           value={username}
+          onKeyDown={(event) => {
+            if (event.key.toLowerCase() === "enter") {
+              onEnterKey(username);
+            }
+          }}
         />
         <button
           type="submit"
